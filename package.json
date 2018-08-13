@@ -1,6 +1,6 @@
 {
   "name": "mk-command",
-  "version": "1.0.164",
+  "version": "1.1.0",
   "description": "mk脚手架",
   "license": "MIT",
   "repository": {
@@ -17,7 +17,9 @@
     "monkey king",
     "whatsmk",
     "whatmk",
-    "mk-js"
+    "mk-js",
+    "mk-command",
+    "mk-mobile-command"
   ],
   "bin": {
     "mk": "./bin/mk-command.js"
