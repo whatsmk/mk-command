@@ -114,11 +114,25 @@ program
         let s = run('install', args);
         process.exit(s);
     })
+    
+program
+    .command('upgrade')
+    .action(function (...args) {
+        let s = run('upgrade', args);
+        process.exit(s);
+    })
 
 program
     .command('add')
     .action(function (...args) {
         let s = run('add', args);
+        process.exit(s);
+    })
+    
+program
+    .command('clone')
+    .action(function (...args) {
+        let s = run('clone', args);
         process.exit(s);
     })
 
@@ -135,6 +149,7 @@ program
         let s = run('publish', args);
         process.exit(s);
     })
+
 
 program
     .command('adduser')
@@ -153,10 +168,14 @@ program
 program.parse(process.argv)
 
 function run(script, args) {
+   
     if(typeof args[0] !== 'string')
         args = []
-    args.splice(0, 0, require.resolve('../scripts/' + script))
 
+    if(typeof args[args.length-1] != 'string')
+        args.pop()
+
+    args.splice(0, 0, require.resolve('../scripts/' + script))
     const spawn = require('react-dev-utils/crossSpawn');
     const result = spawn.sync(
         'node',

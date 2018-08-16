@@ -112,7 +112,7 @@ module.exports = {
         }, {
             test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp4|webm)(\?\S*)?$/,
             use: {
-                loader: 'url-loader',
+                loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',
                     limit: 8192

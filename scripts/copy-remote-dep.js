@@ -19,12 +19,18 @@ const isRelease = process.argv[2] === 'release'
 const targetPath =  process.argv[3] || paths.appPublic
 const mkJson = require(path.join(paths.appSrc, 'mk.json'));
 
-Object.keys(mkJson.dependencies).forEach(k => {
-    if (mkJson.dependencies[k].from == 'MK') {
-        let buildPath = path.resolve(paths.appSrc, 'node_modules', k, 'build', isRelease ? 'prod' : 'dev')
-        if (fs.existsSync(buildPath)) {
-            fs.copySync(buildPath, targetPath);
+cp(mkJson)
+
+function cp(json){
+    Object.keys(json.dependencies).forEach(k => {
+        if (json.dependencies[k].from == 'MK') {
+            let buildPath = path.resolve(paths.appSrc, 'node_modules', k, 'build', isRelease ? 'prod' : 'dev')
+            if (fs.existsSync(buildPath)) {
+                fs.copySync(buildPath, targetPath);
+            }
+            let subJson =  JSON.parse(fs.readFileSync(path.join(paths.appSrc, 'node_modules', k, 'mk.json'), 'utf-8'))
+            cp(subJson)
         }
-    }
-})
+    })
+}
 

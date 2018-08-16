@@ -1,3 +1,3 @@
 module.exports = {
-    mkServerUrl: 'http://localhost:4873'
+    mkServerUrl: 'http://hub.whatsmk.com:4873'
 }

@@ -22,11 +22,11 @@ var appsDirectory = process.argv[2] ? path.resolve(process.argv[2]) : path.join(
 var appDependencies = {}
 
 scanLocalApps(appsDirectory)
-scanRemoteApps()
+scanRemoteApps(packageJson)
 
 mkJson.dependencies = {
-  ...mkJson.dependencies,
-  ...appDependencies
+  ...appDependencies,
+  ...mkJson.dependencies
 }
 fs.writeFileSync(
   path.join(paths.appSrc, 'mk.json'),
@@ -59,14 +59,16 @@ function scanLocalApps(dir) {
   })
 }
 
-function scanRemoteApps() {
-  Object.keys(packageJson.dependencies).forEach(k => {
-    let json = JSON.parse(fs.readFileSync(path.join(paths.appSrc, 'node_modules', k, 'package.json'), 'utf-8'))
-    if (json.isMKApp) {
-      appDependencies[json.name] = {
+function scanRemoteApps(json) {
+  Object.keys(json.dependencies).forEach(k => {
+    let pkg = JSON.parse(fs.readFileSync(path.join(paths.appSrc, 'node_modules', k, 'package.json'), 'utf-8'))
+    if (pkg.isMKApp) {
+      appDependencies[pkg.name] = {
         from: 'MK',
         options: {}
       }
+      let subJson = JSON.parse(fs.readFileSync(path.join(paths.appSrc, 'node_modules', k, 'mk.json'), 'utf-8'))
+      scanRemoteApps(subJson)
     }
   })
 }

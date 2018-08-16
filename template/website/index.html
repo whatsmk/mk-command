@@ -39,14 +39,15 @@
                     requireFn: require,
                     appsMap:{
                         {{each dependencies val key}}
+                        {{set appOptions = $imports.stringify(val.options) }}
                         "{{key}}":{
                             asset:"{{dev===true?key+'.js':key+'.min.js'}}",
-                            options : Object.assign(options, {{val.options}})
+                            options : Object.assign(options, {{@appOptions}})
                         },
                         {{/each}}
                     }
                 });
-                mk.render('welcome', 'app');
+                mk.render('{{rootApp || name}}', 'app');
             /*})*/
         }
     </script>

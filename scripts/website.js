@@ -89,6 +89,7 @@ function createMKJson(root, name) {
   console.log(`  ${chalk.bold('[3/5]')} 创建mk.json文件...`)
   return new Promise((resolve, reject) => {
     const mkJson = {
+      rootApp: 'welcome',
       server: {
         "proxy": null,
         "port": 8000

@@ -39,6 +39,7 @@ createDir(paths.appPublic)
   .then(() => copyCoreLib(paths.appPublic, paths.appPath))
   .then(() => scanAppDep(paths.appPath))
   .then(() => copyLocalDep(paths.appPath))
+  .then(() => copyRemoteDep(paths.appPath))
   .then(() => createHtmlFile(paths.appPublic, paths.appPath))
   .then(() => getServerOption(paths.appPath))
   .then(option => {
@@ -101,11 +102,22 @@ function copyLocalDep(appPath) {
   })
 }
 
+function copyRemoteDep(appPath) {
+  return new Promise((resolve, reject) => {
+      spawn.sync('node',
+          [path.resolve(appPath, 'node_modules', 'mk-command', 'scripts', 'copy-remote-dep.js')],
+          { stdio: 'inherit' }
+      );
+      resolve();
+  })
+}
+
 function createHtmlFile(publicPath, appPath) {
   return new Promise((resolve, reject) => {
 
     const htmlTplPath = path.resolve(appPath, 'index.html');
     let html = fs.readFileSync(htmlTplPath, 'utf-8');
+    template.defaults.imports.stringify = JSON.stringify;
     let render = template.compile(html);
     let packageJson = JSON.parse(fs.readFileSync(path.join(appPath, 'package.json'), 'utf-8'))
     let mkJson = JSON.parse(fs.readFileSync(path.join(appPath, 'mk.json'), 'utf-8'))
