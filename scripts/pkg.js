@@ -47,7 +47,7 @@ emptyDir()
         printBuildError(err);
         process.exit(1);
     })
-  
+
 function emptyDir() {
     console.log(`  ${chalk.bold('[1/7]')} 清空目录:${paths.appPackage}`)
     return new Promise((resolve, reject) => {
@@ -83,7 +83,7 @@ function build() {
 
 function copyCoreLib() {
     console.log(`  ${chalk.bold('[3/7]')} 复制sdk...`)
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         let libPath = path.resolve(appDirectory, 'node_modules', 'mk-sdk', 'dist', 'release')
         if (!fs.existsSync(paths.appPackage)) {
             fs.mkdirSync(paths.appPackage);
@@ -91,14 +91,14 @@ function copyCoreLib() {
         fs.copySync(libPath, paths.appPackage);
         resolve()
     })
-    
+
 }
 
 function scanAppDep(appPath) {
     console.log(`  ${chalk.bold('[4/7]')} 扫描依赖app...`)
     return new Promise((resolve, reject) => {
         spawn.sync('node',
-            [path.resolve(appPath, 'node_modules', 'mk-command', 'scripts', 'scan.js') ],
+            [path.resolve(appPath, 'node_modules', 'mk-command', 'scripts', 'scan.js')],
             { stdio: 'inherit' }
         );
         resolve()
@@ -133,10 +133,20 @@ function createHtmlFile(publicPath, appPath) {
         const htmlTplPath = path.resolve(appPath, 'index.html');
         let html = fs.readFileSync(htmlTplPath, 'utf-8');
         template.defaults.imports.stringify = JSON.stringify;
-        let render = template.compile(html);
+        let render = template.compile(html, {
+            escape: false,
+            debug: false,
+            minimize: true,
+            htmlMinifierOptions: {
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true,
+                ignoreCustomFragments: []
+            }
+        });
         let packageJson = JSON.parse(fs.readFileSync(path.join(appPath, 'package.json'), 'utf-8'))
         let mkJson = JSON.parse(fs.readFileSync(path.join(appPath, 'mk.json'), 'utf-8'))
-        html = render({ ...packageJson, ...mkJson});
+        html = render({ ...packageJson, ...mkJson });
         fs.writeFileSync(path.resolve(publicPath, 'index.html'), html);
         resolve();
     })

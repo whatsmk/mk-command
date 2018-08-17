@@ -99,10 +99,20 @@ function createHtmlFile(publicPath, appPath) {
         const htmlTplPath = path.resolve(appPath, 'index.html');
         let html = fs.readFileSync(htmlTplPath, 'utf-8');
         template.defaults.imports.stringify = JSON.stringify;
-        let render = template.compile(html);
+        let render = template.compile(html, {
+            escape: false,
+            debug: false,
+            minimize: true,
+            htmlMinifierOptions: {
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true,
+                ignoreCustomFragments: []
+            }
+        });
         let packageJson = JSON.parse(fs.readFileSync(path.join(appPath, 'package.json'), 'utf-8'))
         let mkJson = JSON.parse(fs.readFileSync(path.join(appPath, 'mk.json'), 'utf-8'))
-        html = render({ ...packageJson, ...mkJson});
+        html = render({ ...packageJson, ...mkJson });
         fs.writeFileSync(path.resolve(publicPath, 'index.html'), html);
         resolve();
     })
