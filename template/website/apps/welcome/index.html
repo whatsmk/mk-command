@@ -56,10 +56,9 @@
                         {{set appOptions = $imports.stringify(val.options) }}
                         "{{key}}":{
                             asset:"{{dev===true?key+'.js':key+'.min.js'}}",
-                            options : Object.assign(options, {{@appOptions}})
+                            options : Object.assign(options, {{@ appOptions}})
                         },
                         {{/each}}
-                        {{}}
                         "{{name}}":{
                             asset: "{{dev===true?name+'.js':name+'.min.js'}}",
                             options: {}
