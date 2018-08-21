@@ -44,10 +44,18 @@ function scanLocalApps(dir) {
     if (stats.isFile()) {
       if (fileName === 'package.json') {
         let subAppJson = require(path.join(dir, 'package.json'))
-        if (subAppJson.isMKApp == true) {
+        if (subAppJson.isMKApp) {
           let subDir = path.relative(paths.appPath, dir)
           appDependencies[subAppJson.name] = {
             from: 'local',
+            path: path.relative(paths.appPath, dir),
+            options: {}
+          }
+        }
+        else if(subAppJson.isMKPresetApp){
+          appDependencies[subAppJson.name] = {
+            from: 'local',
+            isPreset: true,
             path: path.relative(paths.appPath, dir),
             options: {}
           }
@@ -69,6 +77,13 @@ function scanRemoteApps(json) {
       }
       let subJson = JSON.parse(fs.readFileSync(path.join(paths.appSrc, 'node_modules', k, 'mk.json'), 'utf-8'))
       scanRemoteApps(subJson)
+    }
+    else if(pkg.isMKPresetApp){
+      appDependencies[pkg.name] = {
+        from: 'MK',
+        isPreset:true,
+        options: {}
+      }
     }
   })
 }
