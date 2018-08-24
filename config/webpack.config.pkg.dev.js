@@ -74,7 +74,8 @@ module.exports = {
             root: "MK.metaEngine"
         },
         "mk-aar-form": "mk-aar-form",
-        "mk-aar-grid": "mk-aar-grid"
+        "mk-aar-grid": "mk-aar-grid",
+        "echarts": "echarts"
     },
     module: {
         rules: [{
