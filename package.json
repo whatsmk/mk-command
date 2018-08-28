@@ -1,6 +1,6 @@
 {
   "name": "mk-command",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "description": "mk脚手架",
   "license": "MIT",
   "repository": {
@@ -30,7 +30,7 @@
   "dependencies": {
     "art-template": "*",
     "babel-core": "*",
-    "babel-loader": "*",
+    "babel-loader": "^7.1.5",
     "babel-plugin-add-module-exports": "*",
     "babel-plugin-transform-decorators-legacy": "*",
     "babel-plugin-transform-runtime": "*",
