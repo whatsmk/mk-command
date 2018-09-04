@@ -12,6 +12,8 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
 
+
+
 //路径中末尾反斜杆的处理
 function ensureSlash(path, needsSlash) {
     const hasSlash = path.endsWith('/');

@@ -7,7 +7,7 @@ process.on('unhandledRejection', err => {
 const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
-const spawn = require('react-dev-utils/crossSpawn');
+const paths = require('../config/paths');
 
 module.exports = function (
     websitePath,
@@ -18,7 +18,6 @@ module.exports = function (
     const ownPath = path.join(websitePath, 'node_modules', ownPackageName);
     const websitePackage = require(path.join(websitePath, 'package.json'));
     const useYarn = true;
-
 
     const templatePath = path.join(ownPath, 'template', 'website');
     if (fs.existsSync(templatePath)) {

@@ -1,20 +1,11 @@
 'use strict';
 
-const validateProjectName = require('validate-npm-package-name');
 const chalk = require('chalk');
-const commander = require('commander');
 const fs = require('fs-extra');
 const path = require('path');
-const execSync = require('child_process').execSync;
-const semver = require('semver');
-const dns = require('dns');
-const tmp = require('tmp');
-const unpack = require('tar-pack').unpack;
-const url = require('url');
-const hyperquest = require('hyperquest');
-const envinfo = require('envinfo');
 const spawn = require('react-dev-utils/crossSpawn');
-const packageJson = require('../package.json');
+
+
 let projectName = process.argv[2];
 
 if (typeof projectName === 'undefined') {
@@ -26,112 +17,99 @@ if (typeof projectName === 'undefined') {
   process.exit(1);
 }
 console.log(chalk.green(`开始创建app...`));
-createApp(projectName);
 
-function createApp(name) {
-  
-  const root = path.resolve(name);
-  const appName = path.basename(root);
+const root = path.resolve(projectName);
+const appName = path.basename(root);
 
+try {
   createDir(root, appName)
-    .then(() => createPackageJson(root, appName))
-    .then(() => createMKJson(root, appName))
-    .then(() => install())
-    .then(() => init(appName, root))
-    .catch(reason => exceptionHandler(reason, root))
+  createPackageJson(root, appName)
+  createMKJson(root, appName)
+  install()
+  init(appName, root)
+}
+catch (reason) {
+  exceptionHandler(reason, root)
 }
 
 function createDir(root, name) {
   console.log(`  ${chalk.bold('[1/5]')} 创建目录:${root}...`)
-  return new Promise((resolve, reject) => {
-    fs.ensureDirSync(name);
-    //更换工作目录
-    process.chdir(root);
-    resolve();
-  })
+  fs.ensureDirSync(name);
+  //更换工作目录
+  process.chdir(root);
 }
 
 
 function createPackageJson(root, name) {
   console.log(`  ${chalk.bold('[2/5]')} 创建package.json文件...`)
-  return new Promise((resolve, reject) => {
-    const packageJson = {
-      isMKApp: true,
-      name: name,
-      description: name,
-      version: '1.0.0',
-      license: 'MIT',
-      author: '',
-      keywords: ['mk', 'monkey king', 'react', 'redux', 'mk-js', 'mk-command', name],
-      repository: {
-        "type": "git",
-        "url": `https://github.com/whatsmk/${name}.git`
-      },
-      bugs: {
-        url: `https://github.com/whatsmk/${name}/issues`
-      },
-      homepage: `https://github.com/whatsmk/${name}#readme`,
-      scripts: {
-        'start': 'mk start',
-        'build': 'mk build',
-        'pkg': 'mk pkg'
-      },
-      dependencies: {
-        "mk-command": '*',
-        "mk-sdk": '*'
-      }
-    };
+  const packageJson = {
+    isMKApp: true,
+    name: name,
+    description: name,
+    version: '1.0.0',
+    license: 'MIT',
+    author: '',
+    keywords: ['mk', 'monkey king', 'react', 'redux', 'mk-js', 'mk-command', name],
+    repository: {
+      "type": "git",
+      "url": `https://github.com/whatsmk/${name}.git`
+    },
+    bugs: {
+      url: `https://github.com/whatsmk/${name}/issues`
+    },
+    homepage: `https://github.com/whatsmk/${name}#readme`,
+    scripts: {
+      'start': 'mk start',
+      'build': 'mk build',
+      'pkg': 'mk pkg'
+    },
+    dependencies: {
+      'mk-command': '*'
+    }
+  };
 
-    fs.writeFileSync(
-      path.join(root, 'package.json'),
-      JSON.stringify(packageJson, null, 2)
-    );
-    resolve()
-  })
+  fs.writeFileSync(
+    path.join(root, 'package.json'),
+    JSON.stringify(packageJson, null, 2)
+  );
 }
 
 function createMKJson(root, name) {
   console.log(`  ${chalk.bold('[3/5]')} 创建mk.json文件...`)
-  return new Promise((resolve, reject) => {
-    const mkJson = {
-      server: {
-        "proxy": null,
-        "port": 8000
-      },
-      dependencies: {}
-    };
+  const mkJson = {
+    server: {
+      "proxy": null,
+      "port": 8000
+    },
+    dependencies: {}
+  };
 
-    fs.writeFileSync(
-      path.join(root, 'mk.json'),
-      JSON.stringify(mkJson, null, 2)
-    );
-    resolve()
-  })
+  fs.writeFileSync(
+    path.join(root, 'mk.json'),
+    JSON.stringify(mkJson, null, 2)
+  );
 }
 
 
 function install() {
   console.log(`  ${chalk.bold('[4/5]')} 执行安装依赖...`)
-  return new Promise((resolve, reject) => {
-    spawn.sync('node', [require.resolve('./install.js')], { stdio: 'inherit' });
-    resolve();
-  })
+  spawn.sync('node', [require.resolve('./install.js')], { stdio: 'inherit' });
 }
+
 function init(name, root) {
-  return new Promise((resolve, reject) => {
-    console.log(`  ${chalk.bold('[5/5]')} 初始化应用...`)
-    const initScriptPath = path.resolve(
-      process.cwd(),
-      'node_modules',
-      'mk-command',
-      'scripts',
-      'init.js'
-    );
-    const originalDirectory = process.cwd();
-    const init = require(initScriptPath);
-    init(root, name, originalDirectory)
-    resolve()
-  })
+  console.log(`  ${chalk.bold('[5/5]')} 初始化应用...`)
+  const paths = require('../config/paths');
+  const initScriptPath = path.resolve(
+    process.cwd(),
+    'node_modules',
+    'mk-command',
+    'scripts',
+    'init.js'
+  );
+  const originalDirectory = process.cwd();
+  const init = require(initScriptPath);
+  console.log(root)
+  init(root, name, originalDirectory)
 }
 
 

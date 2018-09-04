@@ -7,8 +7,7 @@ process.on('unhandledRejection', err => {
 const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
-const spawn = require('react-dev-utils/crossSpawn');
-const template = require('art-template');
+const paths = require('../config/paths');
 
 module.exports = function (
   appPath,

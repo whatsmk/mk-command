@@ -35,110 +35,89 @@ if (!checkRequiredFiles([paths.appIndexJs])) {
   process.exit(1);
 }
 
-createDir(paths.appPublic)
-  .then(() => copyCoreLib(paths.appPublic, paths.appPath))
-  .then(() => scanAppDep(paths.appPath))
-  .then(() => copyLocalDep(paths.appPath))
-  .then(() => copyRemoteDep(paths.appPath))
-  .then(() => createHtmlFile(paths.appPublic, paths.appPath))
-  .then(() => getServerOption(paths.appPath))
-  .then(option => {
-    return new Promise((resolve, reject) => {
-      choosePort(option.host, option.port).then(port => {
+try {
+  main()
+}
+catch (err) {
+  if (err && err.message) {
+    console.log(err)
+  }
+  process.exit(1);
+}
 
-        resolve({ ...option, port })
-      })
-    })
-  })
-  .then(option => startServer(option))
-  .catch(err => {
-    if (err && err.message) {
-      console.log(err)
-    }
-    process.exit(1);
-  })
+
+async function main() {
+  createDir(paths.appPublic)
+  copyCoreLib(paths.appPublic, paths.appPath)
+  scanAppDep(paths.appPath)
+  copyLocalDep(paths.appPath)
+  copyRemoteDep(paths.appPath)
+  createHtmlFile(paths.appPublic, paths.appPath)
+  var ret = getServerOption(paths.appPath)
+  var port = await choosePort(ret.host, ret.port)
+  startServer({ ...ret, port })
+
+}
 
 
 function createDir(publicPath) {
-  return new Promise((resolve, reject) => {
-
-    if (!fs.existsSync(publicPath)) {
-      fs.mkdirSync(publicPath);
-    }
-    else {
-      //清空目录中文件
-      fs.emptyDirSync(publicPath);
-    }
-    resolve()
-  })
+  if (!fs.existsSync(publicPath)) {
+    fs.mkdirSync(publicPath);
+  }
+  else {
+    //清空目录中文件
+    fs.emptyDirSync(publicPath);
+  }
 }
 
 function copyCoreLib(publicPath, appPath) {
-  return new Promise((resolve, reject) => {
-    const coreLibPath = path.resolve(appPath, 'node_modules', 'mk-sdk', 'dist', 'debug');
-    fs.copySync(coreLibPath, publicPath);
-    resolve();
-  })
+  let coreLibPath = path.resolve(appDirectory, 'node_modules', 'mk-command', 'sdk', 'debug')
+  fs.copySync(coreLibPath, publicPath);
 }
 
 
 function scanAppDep(appPath) {
-  return new Promise((resolve, reject) => {
-    spawn.sync('node',
-      [path.resolve(appPath, 'node_modules', 'mk-command', 'scripts', 'scan.js')],
-      { stdio: 'inherit' }
-    );
-    resolve()
-  })
+  spawn.sync('node',
+    [path.resolve(appPath, 'node_modules', 'mk-command', 'scripts', 'scan.js')],
+    { stdio: 'inherit' }
+  );
 }
 
 function copyLocalDep(appPath) {
-  return new Promise((resolve, reject) => {
-    spawn.sync('node',
-      [path.resolve(appPath, 'node_modules', 'mk-command', 'scripts', 'copy-local-dep.js')],
-      { stdio: 'inherit' }
-    );
-    resolve();
-  })
+  spawn.sync('node',
+    [path.resolve(appPath, 'node_modules', 'mk-command', 'scripts', 'copy-local-dep.js')],
+    { stdio: 'inherit' }
+  );
 }
 
 function copyRemoteDep(appPath) {
-  return new Promise((resolve, reject) => {
-      spawn.sync('node',
-          [path.resolve(appPath, 'node_modules', 'mk-command', 'scripts', 'copy-remote-dep.js')],
-          { stdio: 'inherit' }
-      );
-      resolve();
-  })
+  spawn.sync('node',
+    [path.resolve(appPath, 'node_modules', 'mk-command', 'scripts', 'copy-remote-dep.js')],
+    { stdio: 'inherit' }
+  );
 }
 
 function createHtmlFile(publicPath, appPath) {
-  return new Promise((resolve, reject) => {
-
-    const htmlTplPath = path.resolve(appPath, 'index.html');
-    let html = fs.readFileSync(htmlTplPath, 'utf-8');
-    template.defaults.imports.stringify = JSON.stringify;
-    let render = template.compile(html);
-    let packageJson = JSON.parse(fs.readFileSync(path.join(appPath, 'package.json'), 'utf-8'))
-    let mkJson = JSON.parse(fs.readFileSync(path.join(appPath, 'mk.json'), 'utf-8'))
-    html = render({ ...packageJson, ...mkJson, dev: true });
-    fs.writeFileSync(path.resolve(publicPath, 'index.html'), html);
-    resolve();
-  })
+  const htmlTplPath = path.resolve(appPath, 'index.html');
+  let html = fs.readFileSync(htmlTplPath, 'utf-8');
+  template.defaults.imports.stringify = JSON.stringify;
+  let render = template.compile(html);
+  let packageJson = JSON.parse(fs.readFileSync(path.join(appPath, 'package.json'), 'utf-8'))
+  let mkJson = JSON.parse(fs.readFileSync(path.join(appPath, 'mk.json'), 'utf-8'))
+  html = render({ ...packageJson, ...mkJson, dev: true });
+  fs.writeFileSync(path.resolve(publicPath, 'index.html'), html);
 }
 
 function getServerOption(appPath) {
-  return new Promise((resolve, reject) => {
     const mkJson = JSON.parse(fs.readFileSync(path.join(appPath, 'mk.json'), 'utf-8'))
     const serverOption = mkJson.server
     const DEFAULT_PORT = parseInt(serverOption.port, 10) || 8000
     const HOST = serverOption.host || '0.0.0.0'
-    resolve({
+    return {
       port: DEFAULT_PORT,
       host: HOST,
       serverOption
-    })
-  })
+    }
 }
 
 function startServer(option) {
