@@ -1,6 +1,6 @@
 {
   "name": "mk-command",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "description": "mk脚手架",
   "license": "MIT",
   "repository": {
@@ -55,7 +55,6 @@
     "less": "*",
     "less-loader": "*",
     "mini-css-extract-plugin": "*",
-    "mk-sdk": "*",
     "optimize-css-assets-webpack-plugin": "*",
     "react": "*",
     "react-dev-utils": "*",
