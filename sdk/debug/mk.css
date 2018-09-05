@@ -3299,7 +3299,7 @@ mark {
 .anticon {
   display: inline-block;
   font-style: normal;
-  vertical-align: baseline;
+  vertical-align: -0.125em;
   text-align: center;
   text-transform: none;
   line-height: 1;
@@ -3307,9 +3307,14 @@ mark {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.anticon:before {
+.anticon svg {
   display: block;
-  font-family: "anticon" !important;
+}
+.anticon:before {
+  display: none;
+}
+.anticon .anticon-icon {
+  display: block;
 }
 .anticon-step-forward:before {
   content: "\E600";
@@ -5116,9 +5121,10 @@ mark {
   padding: 8px 15px;
 }
 .ant-alert-icon {
-  top: 12.5px;
+  top: 11px;
   left: 16px;
   position: absolute;
+  font-size: 16px;
 }
 .ant-alert-description {
   font-size: 14px;
@@ -5162,11 +5168,11 @@ mark {
   overflow: hidden;
   cursor: pointer;
 }
-.ant-alert-close-icon .anticon-cross {
+.ant-alert-close-icon .anticon-close {
   color: rgba(0, 0, 0, 0.45);
   transition: color .3s;
 }
-.ant-alert-close-icon .anticon-cross:hover {
+.ant-alert-close-icon .anticon-close:hover {
   color: #404040;
 }
 .ant-alert-close-text {
@@ -5185,9 +5191,9 @@ mark {
 }
 .ant-alert-with-description .ant-alert-icon {
   position: absolute;
-  top: 16px;
+  top: 14px;
   left: 24px;
-  font-size: 24px;
+  font-size: 26px;
 }
 .ant-alert-with-description .ant-alert-close-icon {
   position: absolute;
@@ -5665,7 +5671,7 @@ mark {
   font-size: 14px;
 }
 .ant-breadcrumb .anticon {
-  font-size: 12px;
+  font-size: 14px;
 }
 .ant-breadcrumb a {
   color: rgba(0, 0, 0, 0.45);
@@ -6950,6 +6956,9 @@ a.ant-btn-sm {
   zoom: 1;
   margin-bottom: -1px;
   min-height: 48px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
 }
 .ant-card-head:before,
 .ant-card-head:after {
@@ -6971,19 +6980,19 @@ a.ant-btn-sm {
   display: flex;
 }
 .ant-card-head-title {
-  font-size: 16px;
   padding: 16px 0;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  color: rgba(0, 0, 0, 0.85);
-  font-weight: 500;
   display: inline-block;
   flex: 1;
 }
 .ant-card-head .ant-tabs {
   margin-bottom: -17px;
   clear: both;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: normal;
 }
 .ant-card-head .ant-tabs-bar {
   border-bottom: 1px solid #e8e8e8;
@@ -6991,6 +7000,9 @@ a.ant-btn-sm {
 .ant-card-extra {
   float: right;
   padding: 17.5px 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: normal;
   text-align: right;
   margin-left: auto;
 }
@@ -7014,7 +7026,7 @@ a.ant-btn-sm {
 .ant-card-body:after {
   clear: both;
 }
-.ant-card-contain-grid:not(.ant-card-loading) {
+.ant-card-contain-grid:not(.ant-card-loading) .ant-card-body {
   margin: -1px 0 0 -1px;
   padding: 0;
 }
@@ -7091,8 +7103,6 @@ a.ant-btn-sm {
 .ant-card-actions > li > span > .anticon {
   font-size: 16px;
   line-height: 22px;
-  display: block;
-  width: 100%;
 }
 .ant-card-actions > li > span a {
   color: rgba(0, 0, 0, 0.45);
@@ -7498,11 +7508,9 @@ a.ant-btn-sm {
   margin-top: -6px;
   line-height: 12px;
   color: rgba(0, 0, 0, 0.25);
-}
-.ant-cascader-picker-arrow:before {
   transition: transform .2s;
 }
-.ant-cascader-picker-arrow.ant-cascader-picker-arrow-expand:before {
+.ant-cascader-picker-arrow.ant-cascader-picker-arrow-expand {
   transform: rotate(180deg);
 }
 .ant-cascader-picker-small .ant-cascader-picker-clear,
@@ -7591,30 +7599,19 @@ a.ant-btn-sm {
   position: relative;
   padding-right: 24px;
 }
-.ant-cascader-menu-item-expand:after {
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E61F";
+.ant-cascader-menu-item-expand .ant-cascader-menu-item-expand-icon,
+.ant-cascader-menu-item-expand .ant-cascader-menu-item-loading-icon {
   display: inline-block;
   font-size: 12px;
-  font-size: 8px \9;
-  transform: scale(0.66666667) rotate(0deg);
+  font-size: 10px \9;
+  transform: scale(0.83333333) rotate(0deg);
   color: rgba(0, 0, 0, 0.45);
   position: absolute;
   right: 12px;
 }
-:root .ant-cascader-menu-item-expand:after {
+:root .ant-cascader-menu-item-expand .ant-cascader-menu-item-expand-icon,
+:root .ant-cascader-menu-item-expand .ant-cascader-menu-item-loading-icon {
   font-size: 12px;
-}
-.ant-cascader-menu-item-loading:after {
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E64D";
-  animation: loadingCircle 1s infinite linear;
 }
 .ant-cascader-menu-item .ant-cascader-menu-item-keyword {
   color: #f5222d;
@@ -7836,29 +7833,34 @@ a.ant-btn-sm {
 }
 .ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow {
   font-style: normal;
-  vertical-align: baseline;
+  vertical-align: -0.125em;
   text-align: center;
   text-transform: none;
   line-height: 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transform: rotate(0);
   font-size: 12px;
   position: absolute;
   display: inline-block;
   line-height: 46px;
   vertical-align: top;
-  transition: transform 0.24s;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   left: 16px;
 }
-.ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow:before {
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow svg {
   display: block;
-  font-family: "anticon" !important;
 }
 .ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow:before {
-  content: "\E61F";
+  display: none;
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow .ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow-icon {
+  display: block;
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow svg {
+  transform: rotate(0);
+  transition: transform 0.24s;
 }
 .ant-collapse > .ant-collapse-item > .ant-collapse-header:focus {
   outline: none;
@@ -7884,7 +7886,7 @@ a.ant-btn-sm {
 .ant-collapse-item:last-child > .ant-collapse-content {
   border-radius: 0 0 4px 4px;
 }
-.ant-collapse > .ant-collapse-item > .ant-collapse-header[aria-expanded="true"] .arrow {
+.ant-collapse > .ant-collapse-item > .ant-collapse-header[aria-expanded="true"] .anticon-right svg {
   transform: rotate(90deg);
 }
 .ant-collapse-borderless {
@@ -7986,6 +7988,7 @@ a.ant-btn-sm {
 .ant-calendar-picker-clear {
   opacity: 0;
   z-index: 1;
+  font-size: 14px;
   color: rgba(0, 0, 0, 0.25);
   background: #fff;
   pointer-events: none;
@@ -7999,10 +8002,6 @@ a.ant-btn-sm {
   pointer-events: auto;
 }
 .ant-calendar-picker-icon {
-  color: rgba(0, 0, 0, 0.25);
-}
-.ant-calendar-picker-icon:after {
-  content: "\E6BB";
   font-family: "anticon";
   font-size: 14px;
   color: rgba(0, 0, 0, 0.25);
@@ -8263,10 +8262,8 @@ a.ant-btn-sm {
   text-align: center;
   display: block;
 }
-.ant-calendar-footer-extra + .ant-calendar-footer-btn {
-  border-top: 1px solid #e8e8e8;
-  margin: 0 -12px;
-  padding: 0 12px;
+.ant-calendar-footer-extra {
+  text-align: left;
 }
 .ant-calendar .ant-calendar-today-btn,
 .ant-calendar .ant-calendar-clear-btn {
@@ -8297,11 +8294,6 @@ a.ant-btn-sm {
   margin: 0;
 }
 .ant-calendar .ant-calendar-clear-btn:after {
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E62E";
   font-size: 14px;
   color: rgba(0, 0, 0, 0.25);
   display: inline-block;
@@ -8702,6 +8694,9 @@ textarea.ant-calendar-range .ant-calendar-time-picker-input {
   bottom: 4px;
   left: 0;
   right: 0;
+}
+.ant-calendar-range .ant-calendar-footer-extra {
+  float: left;
 }
 div.ant-calendar-range-quick-selector {
   text-align: left;
@@ -9413,6 +9408,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   position: fixed;
   top: 0;
   width: 0%;
+  height: 100%;
   z-index: 1000;
 }
 .ant-drawer > * {
@@ -9447,11 +9443,18 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
 .ant-drawer-right.ant-drawer-open .ant-drawer-content-wrapper {
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
 }
-.ant-drawer-top .ant-drawer-content-wrapper,
-.ant-drawer-bottom .ant-drawer-content-wrapper,
-.ant-drawer-top .ant-drawer-content,
-.ant-drawer-bottom .ant-drawer-content {
+.ant-drawer-top,
+.ant-drawer-bottom {
   width: 100%;
+  height: 0%;
+}
+.ant-drawer-top .ant-drawer-content-wrapper,
+.ant-drawer-bottom .ant-drawer-content-wrapper {
+  width: 100%;
+}
+.ant-drawer-top.ant-drawer-open,
+.ant-drawer-bottom.ant-drawer-open {
+  height: 100%;
 }
 .ant-drawer-top.ant-drawer-open .ant-drawer-content-wrapper {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -9509,11 +9512,6 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   line-height: 56px;
   font-size: 16px;
 }
-.ant-drawer-close-x:before {
-  content: "\E633";
-  display: block;
-  font-family: "anticon" !important;
-}
 .ant-drawer-close:focus,
 .ant-drawer-close:hover {
   color: #444;
@@ -9542,9 +9540,6 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   transition: opacity 0.3s linear, height 0s ease 0.3s;
 }
 .ant-drawer-open {
-  transition: transform 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
-}
-.ant-drawer-open > * {
   transition: transform 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
 }
 .ant-drawer-open-content {
@@ -9682,19 +9677,17 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   position: absolute;
   right: 8px;
 }
-.ant-dropdown-menu-item .ant-dropdown-menu-submenu-arrow:after,
-.ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-arrow:after {
-  font-family: "anticon" !important;
+.ant-dropdown-menu-item .ant-dropdown-menu-submenu-arrow-icon,
+.ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-arrow-icon {
   font-style: normal;
-  content: "\E61F";
   color: rgba(0, 0, 0, 0.45);
   display: inline-block;
   font-size: 12px;
   font-size: 10px \9;
   transform: scale(0.83333333) rotate(0deg);
 }
-:root .ant-dropdown-menu-item .ant-dropdown-menu-submenu-arrow:after,
-:root .ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-arrow:after {
+:root .ant-dropdown-menu-item .ant-dropdown-menu-submenu-arrow-icon,
+:root .ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-arrow-icon {
   font-size: 12px;
 }
 .ant-dropdown-menu-submenu-title {
@@ -9712,7 +9705,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   transform-origin: 0 0;
 }
 .ant-dropdown-menu-submenu.ant-dropdown-menu-submenu-disabled .ant-dropdown-menu-submenu-title,
-.ant-dropdown-menu-submenu.ant-dropdown-menu-submenu-disabled .ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-arrow:after {
+.ant-dropdown-menu-submenu.ant-dropdown-menu-submenu-disabled .ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-arrow-icon {
   color: rgba(0, 0, 0, 0.25);
 }
 .ant-dropdown.slide-down-enter.slide-down-enter-active.ant-dropdown-placement-bottomLeft,
@@ -9741,20 +9734,16 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
 .ant-dropdown.slide-up-leave.slide-up-leave-active.ant-dropdown-placement-topRight {
   animation-name: antSlideDownOut;
 }
-.ant-dropdown-trigger .anticon-down,
-.ant-dropdown-link .anticon-down {
+.ant-dropdown-trigger .anticon:not(.anticon-ellipsis),
+.ant-dropdown-link .anticon:not(.anticon-ellipsis) {
   display: inline-block;
   font-size: 12px;
   font-size: 10px \9;
   transform: scale(0.83333333) rotate(0deg);
 }
-:root .ant-dropdown-trigger .anticon-down,
-:root .ant-dropdown-link .anticon-down {
+:root .ant-dropdown-trigger .anticon:not(.anticon-ellipsis),
+:root .ant-dropdown-link .anticon:not(.anticon-ellipsis) {
   font-size: 12px;
-}
-.ant-dropdown-trigger .anticon-ellipsis,
-.ant-dropdown-link .anticon-ellipsis {
-  text-shadow: 0 0 currentColor;
 }
 .ant-dropdown-button {
   white-space: nowrap;
@@ -9763,13 +9752,13 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   padding-left: 8px;
   padding-right: 8px;
 }
-.ant-dropdown-button .anticon-down {
+.ant-dropdown-button .anticon:not(.anticon-ellipsis) {
   display: inline-block;
   font-size: 12px;
   font-size: 10px \9;
   transform: scale(0.83333333) rotate(0deg);
 }
-:root .ant-dropdown-button .anticon-down {
+:root .ant-dropdown-button .anticon:not(.anticon-ellipsis) {
   font-size: 12px;
 }
 .ant-dropdown-menu-dark,
@@ -10199,10 +10188,10 @@ form .ant-input-group-wrapper {
 .ant-form-inline .ant-form-explain {
   position: absolute;
 }
-.has-success.has-feedback .ant-form-item-children:after,
-.has-warning.has-feedback .ant-form-item-children:after,
-.has-error.has-feedback .ant-form-item-children:after,
-.is-validating.has-feedback .ant-form-item-children:after {
+.has-success.has-feedback .ant-form-item-children-icon,
+.has-warning.has-feedback .ant-form-item-children-icon,
+.has-error.has-feedback .ant-form-item-children-icon,
+.is-validating.has-feedback .ant-form-item-children-icon {
   position: absolute;
   top: 50%;
   right: 0;
@@ -10215,16 +10204,21 @@ form .ant-input-group-wrapper {
   text-align: center;
   font-size: 14px;
   animation: zoomIn 0.3s cubic-bezier(0.12, 0.4, 0.29, 1.46);
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
   z-index: 1;
 }
-.has-success.has-feedback .ant-form-item-children:after {
+.has-success.has-feedback .ant-form-item-children-icon svg,
+.has-warning.has-feedback .ant-form-item-children-icon svg,
+.has-error.has-feedback .ant-form-item-children-icon svg,
+.is-validating.has-feedback .ant-form-item-children-icon svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.has-success.has-feedback .ant-form-item-children-icon {
   animation-name: diffZoomIn1 !important;
-  content: '\E630';
   color: #52c41a;
 }
 .has-warning .ant-form-explain,
@@ -10261,8 +10255,7 @@ form .ant-input-group-wrapper {
 .has-warning .has-feedback {
   color: #faad14;
 }
-.has-warning.has-feedback .ant-form-item-children:after {
-  content: '\E62C';
+.has-warning.has-feedback .ant-form-item-children-icon {
   color: #faad14;
   animation-name: diffZoomIn3 !important;
 }
@@ -10340,8 +10333,7 @@ form .ant-input-group-wrapper {
 .has-error .has-feedback {
   color: #f5222d;
 }
-.has-error.has-feedback .ant-form-item-children:after {
-  content: '\E62E';
+.has-error.has-feedback .ant-form-item-children-icon {
   color: #f5222d;
   animation-name: diffZoomIn2 !important;
 }
@@ -10403,10 +10395,8 @@ form .ant-input-group-wrapper {
   box-shadow: 0 0 0 2px rgba(245, 34, 45, 0.2);
   border-right-width: 1px !important;
 }
-.is-validating.has-feedback .ant-form-item-children:after {
+.is-validating.has-feedback .ant-form-item-children-icon {
   display: inline-block;
-  animation: loadingCircle 1s infinite linear;
-  content: "\E64D";
   color: #1890ff;
 }
 .ant-advanced-search-form .ant-form-item {
@@ -13835,7 +13825,7 @@ textarea.ant-input {
   float: none;
   display: inline-block;
 }
-.ant-input-group.ant-input-group-compact > span > .ant-input {
+.ant-input-group.ant-input-group-compact > span:not(:last-child) > .ant-input {
   border-right-width: 0;
 }
 .ant-input-group.ant-input-group-compact .ant-input {
@@ -14038,7 +14028,7 @@ textarea.ant-input-number {
 .ant-input-number-handler-up-inner,
 .ant-input-number-handler-down-inner {
   font-style: normal;
-  vertical-align: baseline;
+  vertical-align: -0.125em;
   text-align: center;
   text-transform: none;
   line-height: 1;
@@ -14058,10 +14048,19 @@ textarea.ant-input-number {
   right: 4px;
   color: rgba(0, 0, 0, 0.45);
 }
+.ant-input-number-handler-up-inner svg,
+.ant-input-number-handler-down-inner svg {
+  display: block;
+}
 .ant-input-number-handler-up-inner:before,
 .ant-input-number-handler-down-inner:before {
+  display: none;
+}
+.ant-input-number-handler-up-inner .ant-input-number-handler-up-inner-icon,
+.ant-input-number-handler-up-inner .ant-input-number-handler-down-inner-icon,
+.ant-input-number-handler-down-inner .ant-input-number-handler-up-inner-icon,
+.ant-input-number-handler-down-inner .ant-input-number-handler-down-inner-icon {
   display: block;
-  font-family: "anticon" !important;
 }
 :root .ant-input-number-handler-up-inner,
 :root .ant-input-number-handler-down-inner {
@@ -14153,10 +14152,7 @@ textarea.ant-input-number {
 .ant-input-number-handler-up-inner {
   top: 50%;
   margin-top: -5px;
-}
-.ant-input-number-handler-up-inner:before {
   text-align: center;
-  content: "\E61E";
 }
 .ant-input-number-handler-up:hover {
   height: 60% !important;
@@ -14169,10 +14165,7 @@ textarea.ant-input-number {
 .ant-input-number-handler-down-inner {
   top: 50%;
   margin-top: -6px;
-}
-.ant-input-number-handler-down-inner:before {
   text-align: center;
-  content: "\E61D";
 }
 .ant-input-number-handler-down:hover {
   height: 60% !important;
@@ -14901,6 +14894,7 @@ textarea.ant-mention-wrapper .ant-mention-editor {
 .ant-menu-submenu-title .anticon {
   min-width: 14px;
   margin-right: 10px;
+  font-size: 16px;
   transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .ant-menu-item .anticon + span,
@@ -14920,6 +14914,9 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   position: absolute;
   border-radius: 4px;
   z-index: 1050;
+}
+.ant-menu-submenu-popup .submenu-title-wrapper {
+  padding-right: 20px;
 }
 .ant-menu-submenu-popup:before {
   position: absolute;
@@ -15017,12 +15014,14 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   border-bottom: 1px solid #e8e8e8;
   box-shadow: none;
   line-height: 46px;
+  white-space: nowrap;
 }
 .ant-menu-horizontal > .ant-menu-item,
 .ant-menu-horizontal > .ant-menu-submenu {
   position: relative;
   top: 1px;
-  float: left;
+  display: inline-block;
+  vertical-align: bottom;
   border-bottom: 2px solid transparent;
 }
 .ant-menu-horizontal > .ant-menu-item:hover,
@@ -15525,11 +15524,6 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   line-height: 56px;
   font-size: 16px;
 }
-.ant-modal-close-x:before {
-  content: "\E633";
-  display: block;
-  font-family: "anticon" !important;
-}
 .ant-modal-close:focus,
 .ant-modal-close:hover {
   color: #444;
@@ -15643,18 +15637,17 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
   font-size: 16px;
-  line-height: 1.4;
   display: block;
   overflow: hidden;
 }
 .ant-confirm-body .ant-confirm-content {
-  margin-left: 38px;
+  margin-left: 42px;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.65);
   margin-top: 8px;
 }
 .ant-confirm-body > .anticon {
-  font-size: 22px;
+  font-size: 26px;
   margin-right: 16px;
   float: left;
 }
@@ -15706,6 +15699,10 @@ textarea.ant-mention-wrapper .ant-mention-editor {
 .ant-notification-bottomLeft .ant-notification-fade-appear.ant-notification-fade-appear-active {
   animation-name: NotificationLeftFadeIn;
 }
+.ant-notification-close-icon {
+  font-size: 14px;
+  cursor: pointer;
+}
 .ant-notification-notice {
   padding: 16px 24px;
   border-radius: 4px;
@@ -15752,7 +15749,7 @@ textarea.ant-mention-wrapper .ant-mention-editor {
 }
 .ant-notification-notice-icon {
   position: absolute;
-  font-size: 24px;
+  font-size: 26px;
   line-height: 24px;
   margin-left: 4px;
 }
@@ -15767,12 +15764,6 @@ textarea.ant-mention-wrapper .ant-mention-editor {
 }
 .ant-notification-notice-icon-error {
   color: #f5222d;
-}
-.ant-notification-notice-close-x:after {
-  font-size: 14px;
-  content: "\E633";
-  font-family: "anticon";
-  cursor: pointer;
 }
 .ant-notification-notice-close {
   position: absolute;
@@ -15939,39 +15930,59 @@ a.ant-notification-notice-close:focus {
 .ant-pagination-jump-next {
   outline: 0;
 }
-.ant-pagination-jump-prev:after,
-.ant-pagination-jump-next:after {
-  content: "\2022\2022\2022";
+.ant-pagination-jump-prev .ant-pagination-item-container,
+.ant-pagination-jump-next .ant-pagination-item-container {
+  position: relative;
+}
+.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-link-icon,
+.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon {
+  display: inline-block;
+  font-size: 12px;
+  font-size: 12px \9;
+  transform: scale(1) rotate(0deg);
+  color: #1890ff;
+  letter-spacing: -1px;
+  opacity: 0;
+  transition: all .2s;
+}
+:root .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-link-icon,
+:root .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon {
+  font-size: 12px;
+}
+.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-link-icon-svg,
+.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon-svg {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
+.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis {
+  position: absolute;
   display: block;
   letter-spacing: 2px;
   color: rgba(0, 0, 0, 0.25);
   text-align: center;
+  opacity: 1;
+  transition: all .2s;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
-.ant-pagination-jump-prev:focus:after,
-.ant-pagination-jump-next:focus:after,
-.ant-pagination-jump-prev:hover:after,
-.ant-pagination-jump-next:hover:after {
-  color: #1890ff;
-  display: inline-block;
-  font-size: 12px;
-  font-size: 8px \9;
-  transform: scale(0.66666667) rotate(0deg);
-  letter-spacing: -1px;
-  font-family: "anticon";
+.ant-pagination-jump-prev:focus .ant-pagination-item-link-icon,
+.ant-pagination-jump-next:focus .ant-pagination-item-link-icon,
+.ant-pagination-jump-prev:hover .ant-pagination-item-link-icon,
+.ant-pagination-jump-next:hover .ant-pagination-item-link-icon {
+  opacity: 1;
 }
-:root .ant-pagination-jump-prev:focus:after,
-:root .ant-pagination-jump-next:focus:after,
-:root .ant-pagination-jump-prev:hover:after,
-:root .ant-pagination-jump-next:hover:after {
-  font-size: 12px;
-}
-.ant-pagination-jump-prev:focus:after,
-.ant-pagination-jump-prev:hover:after {
-  content: "\E620\E620";
-}
-.ant-pagination-jump-next:focus:after,
-.ant-pagination-jump-next:hover:after {
-  content: "\E61F\E61F";
+.ant-pagination-jump-prev:focus .ant-pagination-item-ellipsis,
+.ant-pagination-jump-next:focus .ant-pagination-item-ellipsis,
+.ant-pagination-jump-prev:hover .ant-pagination-item-ellipsis,
+.ant-pagination-jump-next:hover .ant-pagination-item-ellipsis {
+  opacity: 0;
 }
 .ant-pagination-prev,
 .ant-pagination-jump-prev,
@@ -16016,15 +16027,9 @@ a.ant-notification-notice-close:focus {
   outline: none;
   display: block;
   transition: all .3s;
-}
-.ant-pagination-prev .ant-pagination-item-link:after,
-.ant-pagination-next .ant-pagination-item-link:after {
   font-size: 12px;
-  display: block;
-  height: 30px;
-  font-family: "anticon";
+  height: 100%;
   text-align: center;
-  font-weight: 500;
 }
 .ant-pagination-prev:focus .ant-pagination-item-link,
 .ant-pagination-next:focus .ant-pagination-item-link,
@@ -16032,14 +16037,6 @@ a.ant-notification-notice-close:focus {
 .ant-pagination-next:hover .ant-pagination-item-link {
   border-color: #1890ff;
   color: #1890ff;
-}
-.ant-pagination-prev .ant-pagination-item-link:after {
-  content: "\E620";
-  display: block;
-}
-.ant-pagination-next .ant-pagination-item-link:after {
-  content: "\E61F";
-  display: block;
 }
 .ant-pagination-disabled,
 .ant-pagination-disabled:hover,
@@ -16309,7 +16306,9 @@ textarea.ant-pagination-options-quick-jumper input {
 .ant-popover-message > .anticon {
   color: #faad14;
   line-height: 1.6;
+  top: 20px;
   position: absolute;
+  font-size: 16px;
 }
 .ant-popover-message-title {
   padding-left: 22px;
@@ -16856,6 +16855,10 @@ span.ant-radio + * {
   transition: all .3s;
   color: #e8e8e8;
 }
+.ant-rate-star-first .anticon,
+.ant-rate-star-second .anticon {
+  vertical-align: middle;
+}
 .ant-rate-star:hover,
 .ant-rate-star:focus {
   transform: scale(1.1);
@@ -16909,7 +16912,7 @@ span.ant-radio + * {
 .ant-select-arrow {
   display: inline-block;
   font-style: normal;
-  vertical-align: baseline;
+  vertical-align: -0.125em;
   text-align: center;
   text-transform: none;
   text-rendering: optimizeLegibility;
@@ -16924,15 +16927,16 @@ span.ant-radio + * {
   color: rgba(0, 0, 0, 0.25);
   font-size: 12px;
 }
-.ant-select-arrow:before {
+.ant-select-arrow svg {
   display: block;
-  font-family: "anticon" !important;
 }
-.ant-select-arrow * {
+.ant-select-arrow:before {
   display: none;
 }
-.ant-select-arrow:before {
-  content: '\E61D';
+.ant-select-arrow .ant-select-arrow-icon {
+  display: block;
+}
+.ant-select-arrow .ant-select-arrow-icon svg {
   transition: transform .3s;
 }
 .ant-select-selection {
@@ -16982,11 +16986,6 @@ span.ant-radio + * {
 }
 .ant-select-selection__clear:before {
   display: block;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E62E";
 }
 .ant-select-selection__clear:hover {
   color: rgba(0, 0, 0, 0.45);
@@ -17223,7 +17222,7 @@ span.ant-radio + * {
 }
 .ant-select-selection--multiple .ant-select-selection__choice__remove {
   font-style: normal;
-  vertical-align: baseline;
+  vertical-align: -0.125em;
   text-align: center;
   text-transform: none;
   line-height: 1;
@@ -17242,18 +17241,20 @@ span.ant-radio + * {
   position: absolute;
   right: 4px;
 }
-.ant-select-selection--multiple .ant-select-selection__choice__remove:before {
+.ant-select-selection--multiple .ant-select-selection__choice__remove svg {
   display: block;
-  font-family: "anticon" !important;
+}
+.ant-select-selection--multiple .ant-select-selection__choice__remove:before {
+  display: none;
+}
+.ant-select-selection--multiple .ant-select-selection__choice__remove .ant-select-selection--multiple .ant-select-selection__choice__remove-icon {
+  display: block;
 }
 :root .ant-select-selection--multiple .ant-select-selection__choice__remove {
   font-size: 12px;
 }
 .ant-select-selection--multiple .ant-select-selection__choice__remove:hover {
   color: #404040;
-}
-.ant-select-selection--multiple .ant-select-selection__choice__remove:before {
-  content: "\E633";
 }
 .ant-select-selection--multiple .ant-select-selection__clear {
   top: 16px;
@@ -17264,7 +17265,7 @@ span.ant-radio + * {
 .ant-select-allow-clear .ant-select-selection--multiple .ant-select-selection__rendered {
   margin-right: 20px;
 }
-.ant-select-open .ant-select-arrow:before {
+.ant-select-open .ant-select-arrow-icon svg {
   transform: rotate(180deg);
 }
 .ant-select-open .ant-select-selection {
@@ -17406,11 +17407,6 @@ span.ant-radio + * {
   line-height: 0;
 }
 .ant-select-dropdown.ant-select-dropdown--multiple .ant-select-dropdown-menu-item:after {
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E632";
   color: transparent;
   display: inline-block;
   font-size: 12px;
@@ -17441,6 +17437,96 @@ span.ant-radio + * {
 .ant-select-dropdown-container-open .ant-select-dropdown,
 .ant-select-dropdown-open .ant-select-dropdown {
   display: block;
+}
+.ant-skeleton {
+  display: table;
+  width: 100%;
+}
+.ant-skeleton-header {
+  display: table-cell;
+  vertical-align: top;
+  padding-right: 16px;
+}
+.ant-skeleton-header .ant-skeleton-avatar {
+  display: inline-block;
+  vertical-align: top;
+  background: #f2f2f2;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+}
+.ant-skeleton-header .ant-skeleton-avatar.ant-skeleton-avatar-circle {
+  border-radius: 50%;
+}
+.ant-skeleton-header .ant-skeleton-avatar-lg {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.ant-skeleton-header .ant-skeleton-avatar-lg.ant-skeleton-avatar-circle {
+  border-radius: 50%;
+}
+.ant-skeleton-header .ant-skeleton-avatar-sm {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+.ant-skeleton-header .ant-skeleton-avatar-sm.ant-skeleton-avatar-circle {
+  border-radius: 50%;
+}
+.ant-skeleton-content {
+  display: table-cell;
+  vertical-align: top;
+  width: 100%;
+}
+.ant-skeleton-content .ant-skeleton-title {
+  margin-top: 16px;
+  height: 16px;
+  width: 100%;
+  background: #f2f2f2;
+}
+.ant-skeleton-content .ant-skeleton-title + .ant-skeleton-paragraph {
+  margin-top: 24px;
+}
+.ant-skeleton-content .ant-skeleton-paragraph > li {
+  height: 16px;
+  background: #f2f2f2;
+  list-style: none;
+  width: 100%;
+}
+.ant-skeleton-content .ant-skeleton-paragraph > li:nth-child(3) {
+  width: 94%;
+}
+.ant-skeleton-content .ant-skeleton-paragraph > li:nth-child(4) {
+  width: 96%;
+}
+.ant-skeleton-content .ant-skeleton-paragraph > li + li {
+  margin-top: 16px;
+}
+.ant-skeleton-with-avatar .ant-skeleton-content .ant-skeleton-title {
+  margin-top: 12px;
+}
+.ant-skeleton-with-avatar .ant-skeleton-content .ant-skeleton-title + .ant-skeleton-paragraph {
+  margin-top: 28px;
+}
+.ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-title,
+.ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-paragraph > li {
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  animation: ant-skeleton-loading 1.4s ease infinite;
+  background-size: 400% 100%;
+}
+.ant-skeleton.ant-skeleton-active .ant-skeleton-avatar {
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  animation: ant-skeleton-loading 1.4s ease infinite;
+  background-size: 400% 100%;
+}
+@keyframes ant-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 .ant-slider {
   font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -18287,7 +18373,7 @@ span.ant-radio + * {
   margin-right: 6px;
   display: block;
 }
-.ant-switch:before,
+.ant-switch-loading-icon,
 .ant-switch:after {
   position: absolute;
   width: 18px;
@@ -18307,21 +18393,26 @@ span.ant-radio + * {
 .ant-switch:active:after {
   width: 24px;
 }
-.ant-switch:before {
-  content: "\E64D";
-  font-family: anticon;
+.ant-switch-loading-icon {
   animation: loadingCircle 1s infinite linear;
-  text-align: center;
   background: transparent;
   z-index: 1;
   display: none;
   font-size: 12px;
 }
-.ant-switch-loading:before {
+.ant-switch-loading-icon svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.ant-switch-loading .ant-switch-loading-icon {
   display: inline-block;
   color: rgba(0, 0, 0, 0.65);
 }
-.ant-switch-checked.ant-switch-loading:before {
+.ant-switch-checked.ant-switch-loading .ant-switch-loading-icon {
   color: #1890ff;
 }
 .ant-switch:focus {
@@ -18341,7 +18432,6 @@ span.ant-radio + * {
   margin-right: 3px;
   font-size: 12px;
 }
-.ant-switch-small:before,
 .ant-switch-small:after {
   width: 12px;
   height: 12px;
@@ -18350,15 +18440,19 @@ span.ant-radio + * {
 .ant-switch-small:active:after {
   width: 16px;
 }
-.ant-switch-small.ant-switch-checked:before {
-  left: 100%;
-  margin-left: -13px;
+.ant-switch-small .ant-switch-loading-icon {
+  width: 12px;
+  height: 12px;
 }
 .ant-switch-small.ant-switch-checked .ant-switch-inner {
   margin-left: 3px;
   margin-right: 18px;
 }
-.ant-switch-small.ant-switch-loading:before {
+.ant-switch-small.ant-switch-checked .ant-switch-loading-icon {
+  left: 100%;
+  margin-left: -13px;
+}
+.ant-switch-small.ant-switch-loading .ant-switch-loading-icon {
   animation: AntSwitchSmallLoadingCircle 1s infinite linear;
   font-weight: bold;
 }
@@ -18369,14 +18463,14 @@ span.ant-radio + * {
   margin-left: 6px;
   margin-right: 24px;
 }
-.ant-switch-checked:before {
-  left: 100%;
-  margin-left: -19px;
-}
 .ant-switch-checked:after {
   left: 100%;
   transform: translateX(-100%);
   margin-left: -1px;
+}
+.ant-switch-checked .ant-switch-loading-icon {
+  left: 100%;
+  margin-left: -19px;
 }
 .ant-switch-loading,
 .ant-switch-disabled {
@@ -18610,7 +18704,7 @@ span.ant-radio + * {
   display: inline-block;
   width: 14px;
   height: 14px;
-  vertical-align: middle;
+  vertical-align: -0.125em;
   text-align: center;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.45);
@@ -19069,7 +19163,7 @@ tr.ant-table-expanded-row:hover {
 .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-nav-wrap {
   margin-bottom: 0;
 }
-.ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab .anticon-close {
+.ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab .ant-tabs-close-x {
   color: rgba(0, 0, 0, 0.45);
   transition: all .3s;
   font-size: 12px;
@@ -19081,7 +19175,7 @@ tr.ant-table-expanded-row:hover {
   height: 16px;
   height: 14px;
 }
-.ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab .anticon-close:hover {
+.ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab .ant-tabs-close-x:hover {
   color: rgba(0, 0, 0, 0.85);
 }
 .ant-tabs.ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane,
@@ -19099,6 +19193,7 @@ tr.ant-table-expanded-row:hover {
   line-height: 40px;
 }
 .ant-tabs-extra-content .ant-tabs-new-tab {
+  position: relative;
   width: 20px;
   height: 20px;
   line-height: 20px;
@@ -19113,6 +19208,14 @@ tr.ant-table-expanded-row:hover {
 .ant-tabs-extra-content .ant-tabs-new-tab:hover {
   color: #1890ff;
   border-color: #1890ff;
+}
+.ant-tabs-extra-content .ant-tabs-new-tab svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
 .ant-tabs-vertical.ant-tabs-card > .ant-tabs-bar .ant-tabs-nav-container {
   height: auto;
@@ -19294,17 +19397,16 @@ tr.ant-table-expanded-row:hover {
   text-align: center;
   text-transform: none;
 }
-.ant-tabs-tab-prev-icon:before,
-.ant-tabs-tab-next-icon:before {
+.ant-tabs-tab-prev-icon-target,
+.ant-tabs-tab-next-icon-target {
   display: block;
-  font-family: "anticon" !important;
   display: inline-block;
   font-size: 12px;
   font-size: 10px \9;
   transform: scale(0.83333333) rotate(0deg);
 }
-:root .ant-tabs-tab-prev-icon:before,
-:root .ant-tabs-tab-next-icon:before {
+:root .ant-tabs-tab-prev-icon-target,
+:root .ant-tabs-tab-next-icon-target {
   font-size: 12px;
 }
 .ant-tabs-tab-btn-disabled {
@@ -19317,14 +19419,8 @@ tr.ant-table-expanded-row:hover {
 .ant-tabs-tab-next {
   right: 2px;
 }
-.ant-tabs-tab-next-icon:before {
-  content: "\E61F";
-}
 .ant-tabs-tab-prev {
   left: 0;
-}
-.ant-tabs-tab-prev-icon:before {
-  content: "\E620";
 }
 :root .ant-tabs-tab-prev {
   filter: none;
@@ -19381,21 +19477,22 @@ tr.ant-table-expanded-row:hover {
 }
 .ant-tabs-nav .ant-tabs-tab .anticon {
   margin-right: 8px;
+  font-size: 16px;
 }
 .ant-tabs-nav .ant-tabs-tab-active {
   color: #1890ff;
   font-weight: 500;
 }
-.ant-tabs-large .ant-tabs-nav-container {
+.ant-tabs-large > .ant-tabs-bar .ant-tabs-nav-container {
   font-size: 16px;
 }
-.ant-tabs-large .ant-tabs-tab {
+.ant-tabs-large > .ant-tabs-bar .ant-tabs-tab {
   padding: 16px;
 }
-.ant-tabs-small .ant-tabs-nav-container {
+.ant-tabs-small > .ant-tabs-bar .ant-tabs-nav-container {
   font-size: 14px;
 }
-.ant-tabs-small .ant-tabs-tab {
+.ant-tabs-small > .ant-tabs-bar .ant-tabs-tab {
   padding: 8px 16px;
 }
 .ant-tabs:not(.ant-tabs-vertical) > .ant-tabs-content {
@@ -19479,16 +19576,10 @@ tr.ant-table-expanded-row:hover {
   bottom: 0;
   height: 32px;
 }
-.ant-tabs-vertical > .ant-tabs-bar .ant-tabs-tab-next-icon:before {
-  content: "\E61D";
-}
 .ant-tabs-vertical > .ant-tabs-bar .ant-tabs-tab-prev {
   top: 0;
   width: 100%;
   height: 32px;
-}
-.ant-tabs-vertical > .ant-tabs-bar .ant-tabs-tab-prev-icon:before {
-  content: "\E61E";
 }
 .ant-tabs-vertical > .ant-tabs-content {
   overflow: hidden;
@@ -19849,20 +19940,19 @@ tr.ant-table-expanded-row:hover {
   top: 7px;
   margin: 0;
 }
-.ant-time-picker-panel-clear-btn:after {
-  font-size: 12px;
+.ant-time-picker-panel-clear-btn-icon svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  font-size: 14px;
   color: rgba(0, 0, 0, 0.25);
   display: inline-block;
-  line-height: 1;
-  width: 20px;
   transition: color 0.3s ease;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E62E";
 }
-.ant-time-picker-panel-clear-btn:hover:after {
+.ant-time-picker-panel-clear-btn-icon svg:hover {
   color: rgba(0, 0, 0, 0.45);
 }
 .ant-time-picker-panel-narrow .ant-time-picker-panel-input-wrap {
@@ -20073,9 +20163,7 @@ textarea.ant-time-picker-input {
   top: 50%;
   margin-top: -7px;
 }
-.ant-time-picker-icon:after {
-  content: "\E641";
-  font-family: "anticon";
+.ant-time-picker-icon .ant-time-picker-clock-icon {
   color: rgba(0, 0, 0, 0.25);
   display: block;
   line-height: 1;
@@ -20796,22 +20884,25 @@ span.ant-transfer-list-search-action {
   color: #f5222d !important;
   font-weight: 500 !important;
 }
-.ant-tree li.ant-tree-treenode-loading span.ant-tree-switcher.ant-tree-switcher_open:before,
-.ant-tree li.ant-tree-treenode-loading span.ant-tree-switcher.ant-tree-switcher_close:before {
+.ant-tree li.ant-tree-treenode-loading span.ant-tree-switcher.ant-tree-switcher_open .ant-tree-switcher-loading-icon,
+.ant-tree li.ant-tree-treenode-loading span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-loading-icon {
   display: inline-block;
   position: absolute;
   left: 0;
   width: 24px;
   height: 24px;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E64D";
-  animation: loadingCircle 1s infinite linear;
   color: #1890ff;
   transform: none;
   font-size: 14px;
+}
+.ant-tree li.ant-tree-treenode-loading span.ant-tree-switcher.ant-tree-switcher_open .ant-tree-switcher-loading-icon svg,
+.ant-tree li.ant-tree-treenode-loading span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-loading-icon svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
 :root .ant-tree li.ant-tree-treenode-loading span.ant-tree-switcher.ant-tree-switcher_open:after,
 :root .ant-tree li.ant-tree-treenode-loading span.ant-tree-switcher.ant-tree-switcher_close:after {
@@ -20862,40 +20953,40 @@ span.ant-transfer-list-search-action {
 .ant-tree li span.ant-tree-switcher.ant-tree-switcher-noop {
   cursor: default;
 }
-.ant-tree li span.ant-tree-switcher.ant-tree-switcher_open:after {
+.ant-tree li span.ant-tree-switcher.ant-tree-switcher_open .ant-tree-switcher-icon,
+.ant-tree li span.ant-tree-switcher.ant-tree-switcher_open .ant-select-switcher-icon {
   font-size: 12px;
   font-size: 7px \9;
   transform: scale(0.58333333) rotate(0deg);
   display: inline-block;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E606";
   font-weight: bold;
-  transition: transform .3s;
 }
-:root .ant-tree li span.ant-tree-switcher.ant-tree-switcher_open:after {
+:root .ant-tree li span.ant-tree-switcher.ant-tree-switcher_open .ant-tree-switcher-icon,
+:root .ant-tree li span.ant-tree-switcher.ant-tree-switcher_open .ant-select-switcher-icon {
   font-size: 12px;
 }
-.ant-tree li span.ant-tree-switcher.ant-tree-switcher_close:after {
+.ant-tree li span.ant-tree-switcher.ant-tree-switcher_open .ant-tree-switcher-icon svg,
+.ant-tree li span.ant-tree-switcher.ant-tree-switcher_open .ant-select-switcher-icon svg {
+  transition: transform .3s;
+}
+.ant-tree li span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-icon,
+.ant-tree li span.ant-tree-switcher.ant-tree-switcher_close .ant-select-switcher-icon {
   font-size: 12px;
   font-size: 7px \9;
   transform: scale(0.58333333) rotate(0deg);
   display: inline-block;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E606";
   font-weight: bold;
-  transition: transform .3s;
 }
-:root .ant-tree li span.ant-tree-switcher.ant-tree-switcher_close:after {
+:root .ant-tree li span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-icon,
+:root .ant-tree li span.ant-tree-switcher.ant-tree-switcher_close .ant-select-switcher-icon {
   font-size: 12px;
 }
-.ant-tree li span.ant-tree-switcher.ant-tree-switcher_close:after {
-  transform: rotate(270deg) scale(0.59);
+.ant-tree li span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-icon svg,
+.ant-tree li span.ant-tree-switcher.ant-tree-switcher_close .ant-select-switcher-icon svg {
+  transition: transform .3s;
+}
+.ant-tree li span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-icon svg {
+  transform: rotate(-90deg);
 }
 .ant-tree li:last-child > span.ant-tree-switcher:before,
 .ant-tree li:last-child > span.ant-tree-iconEle:before {
@@ -20937,56 +21028,53 @@ li.ant-tree-treenode-disabled > .ant-tree-node-content-wrapper:hover {
   background: #fff;
   color: rgba(0, 0, 0, 0.45);
 }
-.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher-noop:after {
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher-noop .ant-tree-switcher-icon,
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher-noop .ant-select-switcher-icon {
   font-size: 12px;
   font-size: 12px \9;
   transform: scale(1) rotate(0deg);
   display: inline-block;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E664";
-  vertical-align: baseline;
   font-weight: normal;
-  transition: transform .3s;
 }
-:root .ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher-noop:after {
+:root .ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher-noop .ant-tree-switcher-icon,
+:root .ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher-noop .ant-select-switcher-icon {
   font-size: 12px;
 }
-.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_open:after {
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher-noop .ant-tree-switcher-icon svg,
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher-noop .ant-select-switcher-icon svg {
+  transition: transform .3s;
+}
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_open .ant-tree-switcher-icon,
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_open .ant-select-switcher-icon {
   font-size: 12px;
   font-size: 12px \9;
   transform: scale(1) rotate(0deg);
   display: inline-block;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E621";
-  vertical-align: baseline;
   font-weight: normal;
-  transition: transform .3s;
 }
-:root .ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_open:after {
+:root .ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_open .ant-tree-switcher-icon,
+:root .ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_open .ant-select-switcher-icon {
   font-size: 12px;
 }
-.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_close:after {
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_open .ant-tree-switcher-icon svg,
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_open .ant-select-switcher-icon svg {
+  transition: transform .3s;
+}
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-icon,
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_close .ant-select-switcher-icon {
   font-size: 12px;
   font-size: 12px \9;
   transform: scale(1) rotate(0deg);
   display: inline-block;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E645";
-  vertical-align: baseline;
   font-weight: normal;
-  transition: transform .3s;
 }
-:root .ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_close:after {
+:root .ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-icon,
+:root .ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_close .ant-select-switcher-icon {
   font-size: 12px;
+}
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-icon svg,
+.ant-tree.ant-tree-show-line li span.ant-tree-switcher.ant-tree-switcher_close .ant-select-switcher-icon svg {
+  transition: transform .3s;
 }
 .ant-tree.ant-tree-show-line li:not(:last-child):before {
   content: ' ';
@@ -21238,53 +21326,85 @@ li.ant-tree-treenode-disabled > .ant-tree-node-content-wrapper:hover {
   outline: none;
   text-align: center;
 }
-.ant-select-tree li span.ant-select-tree-icon_loading:after {
+.ant-select-tree li span.ant-select-icon_loading .ant-select-switcher-loading-icon {
   display: inline-block;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E6AE";
-  animation: loadingCircle 1s infinite linear;
+  position: absolute;
+  left: 0;
   color: #1890ff;
+  transform: none;
+  font-size: 14px;
+}
+.ant-select-tree li span.ant-select-icon_loading .ant-select-switcher-loading-icon svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.ant-select-tree li span.ant-select-tree-switcher {
+  position: relative;
 }
 .ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher-noop {
   cursor: auto;
 }
-.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open:after {
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open .ant-tree-switcher-icon,
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open .ant-select-switcher-icon {
   font-size: 12px;
   font-size: 7px \9;
   transform: scale(0.58333333) rotate(0deg);
   display: inline-block;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E606";
   font-weight: bold;
-  transition: transform .3s;
 }
-:root .ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open:after {
+:root .ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open .ant-tree-switcher-icon,
+:root .ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open .ant-select-switcher-icon {
   font-size: 12px;
 }
-.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close:after {
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open .ant-tree-switcher-icon svg,
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open .ant-select-switcher-icon svg {
+  transition: transform .3s;
+}
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close .ant-tree-switcher-icon,
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close .ant-select-switcher-icon {
   font-size: 12px;
   font-size: 7px \9;
   transform: scale(0.58333333) rotate(0deg);
   display: inline-block;
-  font-family: 'anticon';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\E606";
   font-weight: bold;
-  transition: transform .3s;
 }
-:root .ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close:after {
+:root .ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close .ant-tree-switcher-icon,
+:root .ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close .ant-select-switcher-icon {
   font-size: 12px;
 }
-.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close:after {
-  transform: rotate(270deg) scale(0.59);
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close .ant-tree-switcher-icon svg,
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close .ant-select-switcher-icon svg {
+  transition: transform .3s;
+}
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close .ant-select-switcher-icon svg {
+  transform: rotate(-90deg);
+}
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open .ant-select-switcher-loading-icon,
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close .ant-select-switcher-loading-icon {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  color: #1890ff;
+  transform: none;
+  font-size: 14px;
+}
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open .ant-select-switcher-loading-icon svg,
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close .ant-select-switcher-loading-icon svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.ant-select-tree .ant-select-tree-treenode-loading .ant-select-tree-iconEle {
+  display: none;
 }
 .ant-select-tree-child-tree {
   display: none;
@@ -21510,7 +21630,7 @@ li.ant-select-tree-treenode-disabled > .ant-select-tree-node-content-wrapper:hov
   position: absolute;
   top: 5px;
 }
-.ant-upload-list-item .anticon-cross {
+.ant-upload-list-item .anticon-close {
   display: inline-block;
   font-size: 12px;
   font-size: 10px \9;
@@ -21519,21 +21639,21 @@ li.ant-select-tree-treenode-disabled > .ant-select-tree-node-content-wrapper:hov
   opacity: 0;
   cursor: pointer;
   position: absolute;
-  top: 0;
+  top: 6px;
   right: 4px;
   color: rgba(0, 0, 0, 0.45);
   line-height: 22px;
 }
-:root .ant-upload-list-item .anticon-cross {
+:root .ant-upload-list-item .anticon-close {
   font-size: 12px;
 }
-.ant-upload-list-item .anticon-cross:hover {
+.ant-upload-list-item .anticon-close:hover {
   color: rgba(0, 0, 0, 0.65);
 }
 .ant-upload-list-item:hover .ant-upload-list-item-info {
   background-color: #e6f7ff;
 }
-.ant-upload-list-item:hover .anticon-cross {
+.ant-upload-list-item:hover .anticon-close {
   opacity: 1;
 }
 .ant-upload-list-item-error,
@@ -21541,7 +21661,7 @@ li.ant-select-tree-treenode-disabled > .ant-select-tree-node-content-wrapper:hov
 .ant-upload-list-item-error .ant-upload-list-item-name {
   color: #f5222d;
 }
-.ant-upload-list-item-error .anticon-cross {
+.ant-upload-list-item-error .anticon-close {
   opacity: 1;
   color: #f5222d !important;
 }
@@ -21638,13 +21758,16 @@ li.ant-select-tree-treenode-disabled > .ant-select-tree-node-content-wrapper:hov
   bottom: 14px;
   width: calc(100% - 24px);
 }
-.ant-upload-list-picture .anticon-cross,
-.ant-upload-list-picture-card .anticon-cross {
+.ant-upload-list-picture .anticon-close,
+.ant-upload-list-picture-card .anticon-close {
   position: absolute;
   right: 8px;
   top: 8px;
   line-height: 1;
   opacity: 1;
+}
+.ant-upload-list-picture-card {
+  float: left;
 }
 .ant-upload-list-picture-card.ant-upload-list:after {
   display: none;
