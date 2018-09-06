@@ -71,7 +71,7 @@ function createDir(publicPath) {
 }
 
 function copyCoreLib(publicPath, appPath) {
-  let coreLibPath = path.resolve(appDirectory, 'node_modules', 'mk-command', 'sdk', 'debug')
+  let coreLibPath = path.resolve(appPath, 'node_modules', 'mk-command', 'sdk', 'debug')
   fs.copySync(coreLibPath, publicPath);
 }
 

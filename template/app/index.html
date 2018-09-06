@@ -1,7 +1,7 @@
 <% presetDepAppNames = [] , depApps = {}, exitsPreset = false %>
 {{each dependencies val key}}
     <% if (val.isPreset) { %>
-        <% presetDepAppNames.push(key); %>
+        <% presetDepAppNames.push(dev?key: key+'.min'); %>
         <% exitsPreset = true; %>
     <% } else { %>
         <% depApps[key] = dependencies[key]; %>
@@ -18,9 +18,6 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit" />
     <meta name="viewport" content="maximum-scale=1.0">
-    {{each presetDepAppNames key}}
-        <link type="text/css" rel='stylesheet' href='{{dev===true?key+'.css':key+'.min.css'}}' />
-    {{/each}}
 </head>
 <body>
     <div id='app' style="width:100%;height: 100%"></div>
